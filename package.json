@@ -27,6 +27,10 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "compose:up": "docker compose up -d starter",
+    "compose:down": "docker compose down",
+    "compose:restart": "docker compose restart",
+    "compose:reset": "docker compose down -v --remove-orphans"
   }
 }
