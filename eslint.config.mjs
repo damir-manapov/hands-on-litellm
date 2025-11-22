@@ -6,7 +6,7 @@ export default tseslint.config(
   eslint.configs.recommended,
   {
     files: ['**/*.ts', '**/*.tsx'],
-    ignores: ['**/*.config.ts', '**/*.config.mjs'],
+    ignores: ['**/*.config.ts', '**/*.config.mjs', 'examples/**/*'],
     extends: [...tseslint.configs.recommendedTypeChecked, ...tseslint.configs.stylisticTypeChecked],
     languageOptions: {
       parserOptions: {

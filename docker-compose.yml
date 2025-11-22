@@ -34,6 +34,7 @@ services:
       - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY:-sk-1234}
       - LITELLM_SALT_KEY=${LITELLM_SALT_KEY:-sk-5678}
       - DATABASE_URL=postgresql://${POSTGRES_USER:-litellm_user}:${POSTGRES_PASSWORD:-litellm_password}@postgres:5432/${POSTGRES_DB:-litellm}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     volumes:
       - ./litellm-config.yaml:/app/config.yaml:ro
     command: ['--config', '/app/config.yaml', '--port', '4000']
