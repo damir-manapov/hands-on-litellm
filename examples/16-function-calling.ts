@@ -1,7 +1,8 @@
 /**
- * Example 20: Function Calling with OpenAI SDK
+ * Example 16: Function Calling
  *
- * Use function calling / tool use with OpenAI SDK through LiteLLM using LiteLLMClient.
+ * Use function calling / tool use with LiteLLM.
+ * This demonstrates accessing advanced OpenAI SDK features via getOpenAIClient().
  */
 
 import { LiteLLMClient } from '../src/client.js';

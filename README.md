@@ -172,7 +172,7 @@ The OpenAI SDK provides full TypeScript support and all OpenAI features includin
 
 ### Examples
 
-The project includes 20 examples demonstrating various use cases. Run them directly with `tsx`:
+The project includes 16 examples demonstrating various use cases. Run them directly with `tsx`:
 
 **Custom LiteLLM Client Examples:**
 
@@ -261,40 +261,18 @@ The project includes 20 examples demonstrating various use cases. Run them direc
   ```
 
 - **Example 15: Custom Base URL** - Configure client to use a custom LiteLLM proxy URL
+
   ```bash
   tsx examples/15-custom-base-url.ts
   ```
 
-**OpenAI SDK Examples:**
-
-- **Example 16: OpenAI SDK Basic Usage** - Use the official OpenAI npm package with LiteLLM
+- **Example 16: Function Calling** - Use function calling / tool use (advanced feature)
 
   ```bash
-  tsx examples/16-openai-basic.ts
+  tsx examples/16-function-calling.ts
   ```
 
-- **Example 17: OpenAI SDK Streaming** - Stream responses using OpenAI SDK
-
-  ```bash
-  tsx examples/17-openai-streaming.ts
-  ```
-
-- **Example 18: OpenAI SDK with Different Models** - Switch between different OpenAI models
-
-  ```bash
-  tsx examples/18-openai-models.ts
-  ```
-
-- **Example 19: OpenAI SDK Conversation** - Multi-turn conversation using OpenAI SDK
-
-  ```bash
-  tsx examples/19-openai-conversation.ts
-  ```
-
-- **Example 20: OpenAI SDK Function Calling** - Use function calling / tool use with OpenAI SDK
-  ```bash
-  tsx examples/20-openai-tools.ts
-  ```
+  This example demonstrates accessing advanced OpenAI SDK features (like function calling) that aren't directly exposed by LiteLLMClient's wrapper methods. Use `getOpenAIClient()` to access the underlying OpenAI client when you need full SDK features.
 
 ## API Reference
 
