@@ -71,10 +71,14 @@ This project includes a Docker Compose setup for running LiteLLM.
    cp .env.example .env
    ```
 
-   Then edit `.env` and set your `OPENAI_API_KEY`:
+   Then edit `.env` and set your API keys:
 
    ```bash
+   # Required for OpenAI models (used by LiteLLM Docker Compose)
    OPENAI_API_KEY=sk-your-actual-openai-api-key-here
+
+   # Required for Example 17: GigaChat integration
+   GIGACHAT_AUTH_KEY=your-gigachat-authorization-key-here
    ```
 
    Optional environment variables:
@@ -83,13 +87,19 @@ This project includes a Docker Compose setup for running LiteLLM.
    - `POSTGRES_DB` - PostgreSQL database name (default: litellm)
    - `POSTGRES_USER` - PostgreSQL user (default: litellm_user)
    - `POSTGRES_PASSWORD` - PostgreSQL password (default: litellm_password)
+   - `LITELLM_BASE_URL` - LiteLLM proxy URL (default: http://localhost:4000)
+   - `LITELLM_API_KEY` - LiteLLM master key for authentication
 
-**Note**: You must set `OPENAI_API_KEY` in your `.env` file for LiteLLM to work with OpenAI models. The `.env` file is used by Docker Compose automatically.
+**Note**:
 
-**For running examples directly** (without Docker), you can also set the environment variable:
+- You must set `OPENAI_API_KEY` in your `.env` file for LiteLLM to work with OpenAI models. The `.env` file is used by Docker Compose automatically.
+- Set `GIGACHAT_AUTH_KEY` in your `.env` file to use Example 17 (GigaChat integration). The example will automatically load this from `.env` using dotenv.
+
+**For running examples directly** (without Docker), environment variables from `.env` are automatically loaded for examples that use dotenv (like Example 17). You can also set environment variables manually:
 
 ```bash
 export OPENAI_API_KEY=sk-your-actual-openai-api-key-here
+export GIGACHAT_AUTH_KEY=your-gigachat-authorization-key-here
 tsx examples/01-basic-completion.ts
 ```
 
@@ -172,7 +182,7 @@ The OpenAI SDK provides full TypeScript support and all OpenAI features includin
 
 ### Examples
 
-The project includes 16 examples demonstrating various use cases. Run them directly with `tsx`:
+The project includes 17 examples demonstrating various use cases. Run them directly with `tsx`:
 
 **Custom LiteLLM Client Examples:**
 
@@ -274,6 +284,16 @@ The project includes 16 examples demonstrating various use cases. Run them direc
 
   This example demonstrates accessing advanced OpenAI SDK features (like function calling) that aren't directly exposed by LiteLLMClient's wrapper methods. Use `getOpenAIClient()` to access the underlying OpenAI client when you need full SDK features.
 
+- **Example 17: Sber GigaChat Integration** - Use Sber GigaChat API through LiteLLMClient
+
+  ```bash
+  tsx examples/17-gigachat.ts
+  ```
+
+  This example demonstrates how to use Sber GigaChat API with LiteLLMClient. Since GigaChat is OpenAI-compatible, we configure LiteLLMClient with GigaChat's base URL. It shows basic chat completion using LiteLLMClient methods, usage tracking, function calling via `getOpenAIClient()`, embeddings, and model listing. The access token is automatically obtained from the authorization key (valid for 30 minutes). Requires `GIGACHAT_AUTH_KEY` environment variable (can be set in `.env` file).
+
+  Documentation: https://developers.sber.ru/docs/ru/gigachat/guides/compatible-openai
+
 ## API Reference
 
 ### `LiteLLMClient`
@@ -335,3 +355,4 @@ const fullResponse = await client.streamChat(messages, 'optional-model', (chunk)
 - `LITELLM_BASE_URL` - LiteLLM proxy URL (default: http://localhost:4000)
 - `LITELLM_API_KEY` - LiteLLM master key for authentication
 - `OPENAI_API_KEY` - OpenAI API key (required for OpenAI models, set in `.env` for Docker Compose)
+- `GIGACHAT_AUTH_KEY` - Sber GigaChat API authorization key (required for Example 17, used to automatically obtain access token). Can be set in `.env` file.
