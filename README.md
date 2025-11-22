@@ -65,15 +65,33 @@ This project includes a Docker Compose setup for running LiteLLM.
 ### Configuration
 
 1. Create a `litellm-config.yaml` file (example provided) with your model configurations
-2. Create a `.env` file with:
-   - `OPENAI_API_KEY` - **Required**: Your OpenAI API key
+2. Create a `.env` file (copy from `.env.example`):
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Then edit `.env` and set your `OPENAI_API_KEY`:
+
+   ```bash
+   OPENAI_API_KEY=sk-your-actual-openai-api-key-here
+   ```
+
+   Optional environment variables:
    - `LITELLM_MASTER_KEY` - Master key for LiteLLM (default: sk-1234)
    - `LITELLM_SALT_KEY` - Salt key for encryption (default: sk-5678)
    - `POSTGRES_DB` - PostgreSQL database name (default: litellm)
    - `POSTGRES_USER` - PostgreSQL user (default: litellm_user)
    - `POSTGRES_PASSWORD` - PostgreSQL password (default: litellm_password)
 
-**Note**: You must set `OPENAI_API_KEY` in your `.env` file for LiteLLM to work with OpenAI models.
+**Note**: You must set `OPENAI_API_KEY` in your `.env` file for LiteLLM to work with OpenAI models. The `.env` file is used by Docker Compose automatically.
+
+**For running examples directly** (without Docker), you can also set the environment variable:
+
+```bash
+export OPENAI_API_KEY=sk-your-actual-openai-api-key-here
+tsx examples/01-basic-completion.ts
+```
 
 The `DATABASE_URL` environment variable is automatically configured based on the PostgreSQL settings.
 
