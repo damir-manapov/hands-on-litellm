@@ -79,6 +79,10 @@ This project includes a Docker Compose setup for running LiteLLM.
 
    # Required for Example 17: GigaChat integration
    GIGACHAT_AUTH_KEY=your-gigachat-authorization-key-here
+
+   # Required for Example 18: Yandex GPT integration
+   YANDEX_CLOUD_FOLDER=your-yandex-cloud-folder-id-here
+   YANDEX_CLOUD_API_KEY=your-yandex-cloud-api-key-here
    ```
 
    Optional environment variables:
@@ -182,7 +186,7 @@ The OpenAI SDK provides full TypeScript support and all OpenAI features includin
 
 ### Examples
 
-The project includes 17 examples demonstrating various use cases. Run them directly with `tsx`:
+The project includes 18 examples demonstrating various use cases. Run them directly with `tsx`:
 
 **Custom LiteLLM Client Examples:**
 
@@ -294,6 +298,14 @@ The project includes 17 examples demonstrating various use cases. Run them direc
 
   Documentation: https://developers.sber.ru/docs/ru/gigachat/guides/compatible-openai
 
+- **Example 18: Yandex GPT Integration** - Use Yandex GPT API
+
+  ```bash
+  tsx examples/18-yandex-gpt.ts
+  ```
+
+  This example demonstrates how to use Yandex GPT API. Yandex GPT provides an OpenAI-compatible API with custom endpoints like `responses.create()`. The example shows how to configure the OpenAI client with custom headers (OpenAI-Project) and use both custom and standard endpoints. Requires `YANDEX_CLOUD_FOLDER` and `YANDEX_CLOUD_API_KEY` environment variables (can be set in `.env` file).
+
 ## API Reference
 
 ### `LiteLLMClient`
@@ -356,3 +368,5 @@ const fullResponse = await client.streamChat(messages, 'optional-model', (chunk)
 - `LITELLM_API_KEY` - LiteLLM master key for authentication
 - `OPENAI_API_KEY` - OpenAI API key (required for OpenAI models, set in `.env` for Docker Compose)
 - `GIGACHAT_AUTH_KEY` - Sber GigaChat API authorization key (required for Example 17, used to automatically obtain access token). Can be set in `.env` file.
+- `YANDEX_CLOUD_FOLDER` - Yandex Cloud folder ID (required for Example 18). Can be set in `.env` file.
+- `YANDEX_CLOUD_API_KEY` - Yandex Cloud API key (required for Example 18). Can be set in `.env` file.
